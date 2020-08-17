@@ -1,0 +1,443 @@
+<div class="container-fluid">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="fname"
+          #firstname="ngModel"
+          pattern="^[a-zA-Z]+$"
+          [class.is-invalid]="firstname.invalid && firstname.touched"
+          [(ngModel)]="userModel.firstname"
+          required
+        />
+        <div
+          *ngIf="firstname.errors && (firstname.invalid || firstname.touched)"
+        >
+          <small class="text-danger" *ngIf="firstname.errors.required"
+            >First Name Is Required!!</small
+          >
+          <small class="text-danger" *ngIf="firstname.errors.pattern"
+            >First Name Should Only Contain Characters!!</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label>Last Name</label>
+        <input
+          type="tel"
+          class="form-control"
+          name="lastname"
+          #lastname="ngModel"
+          pattern="^[a-zA-Z]+$"
+          [class.is-invalid]="lastname.invalid && lastname.touched"
+          [(ngModel)]="userModel.lastname"
+          required
+        />
+        <div *ngIf="lastname.errors && (lastname.invalid || lastname.touched)">
+          <small class="text-danger" *ngIf="lastname.errors.required"
+            >Last Name Is Required!!</small
+          >
+          <small class="text-danger" *ngIf="lastname.errors.pattern"
+            >Last Name Should Only Contain Characters!!</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Age</label>
+        <input
+          type="number"
+          class="form-control"
+          name="age"
+          #age="ngModel"
+          pattern=""
+          [class.is-invalid]="age.invalid && age.touched"
+          [(ngModel)]="userModel.age"
+          required
+        />
+        <div *ngIf="age.errors && (age.invalid || age.touched)">
+          <small class="text-danger" *ngIf="age.errors.required"
+            >Age Is Required!!</small
+          >
+          <small class="text-danger" *ngIf="pincode.errors.pattern">
+            It Must Be Greater Than 18 And Less Than 60</small
+          >
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          #email="ngModel"
+          pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$"
+          [class.is-invalid]="email.invalid && email.touched"
+          [(ngModel)]="userModel.email"
+          required
+        />
+        <div *ngIf="email.errors && (email.invalid || email.touched)">
+          <small class="text-danger" *ngIf="email.errors.required"
+            >Email Is Required!!</small
+          >
+          <!-- <small class="text-danger" *ngIf="email.errors.pattern">
+            Please Enter A Valid Email Address
+          </small>-->
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <label>Phone Number</label>
+        <input
+          type="tel"
+          class="form-control"
+          placeholder="Phone Number"
+          name="phonenumber"
+          #phonenumber="ngModel"
+          pattern="^\d{10}$"
+          [class.is-invalid]="phonenumber.invalid && phonenumber.touched"
+          [(ngModel)]="userModel.phonenumber"
+          required
+        />
+        <div
+          *ngIf="
+            phonenumber.errors && (phonenumber.invalid || phonenumber.touched)
+          "
+        >
+          <small class="text-danger" *ngIf="phonenumber.errors.required"
+            >Phone Number Is Required!!</small
+          >
+          <small class="text-danger" *ngIf="phonenumber.errors.pattern"
+            >Phone Number Must Be Of 10 Digits!!</small
+          >
+        </div>
+      </div>
+    </div>
+    <fieldset>
+      <div ngModelGroup="address">
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <label>Street Address</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Street Address"
+              name="sAddress"
+              #streetaddress="ngModel"
+              [class.is-invalid]="
+                streetaddress.invalid && streetaddress.touched
+              "
+              [(ngModel)]="userModel.streetaddress"
+              required
+            />
+            <div
+              *ngIf="
+                streetaddress.errors &&
+                (streetaddress.invalid || streetaddress.touched)
+              "
+            >
+              <small class="text-danger" *ngIf="streetaddress.errors.required"
+                >Street Address Is Required!!</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>City</label>
+            <input
+              type="text"
+              class="form-control"
+              name="city"
+              #city="ngModel"
+              [class.is-invalid]="city.invalid && city.touched"
+              [(ngModel)]="userModel.city"
+              required
+            />
+            <div *ngIf="city.errors && (city.invalid || city.touched)">
+              <small class="text-danger" *ngIf="city.errors.required"
+                >City Is Required!!</small
+              >
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label>State</label>
+            <select
+              class="form-control"
+              name="state"
+              #state="ngModel"
+              [class.is-invalid]="state.invalid && state.touched"
+              [(ngModel)]="userModel.state"
+              required
+            >
+              <option selected>Choose a state</option>
+              <option>Rajasthan</option>
+              <option>Up</option>
+              <option>MP</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Country</label>
+            <select
+              class="form-control"
+              name="country"
+              #country="ngModel"
+              [class.is-invalid]="country.invalid && country.touched"
+              [(ngModel)]="userModel.country"
+              required
+            >
+              <option selected>Choose A Country</option>
+              <option>America</option>
+              <option>India</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="pincode">Pin Code</label>
+            <input
+              type="text"
+              class="form-control"
+              name="pincode"
+              #pincode="ngModel"
+              pattern="^[0-9]\d{6}$"
+              [class.is-invalid]="pincode.invalid && pincode.touched"
+              [(ngModel)]="userModel.pincode"
+              required
+            />
+            <div *ngIf="pincode.errors && (pincode.invalid || pincode.touched)">
+              <small class="text-danger" *ngIf="pincode.errors.required"
+                >pincode Is Required!!</small
+              >
+              <small class="text-danger" *ngIf="pincode.errors.pattern">
+                It Must Contain Only Numbers And Length Should Be 6
+                Only!!</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="mb-3">
+      <label>Trainer Prefernces?</label>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="yes"
+          name="trainerprefernce"
+          trainerpreference="ngModel"
+          [class.is-invalid]="
+            trainerpreference.invalid && trainerpreference.touched
+          "
+          [(ngModel)]="userModel.trainerpreference"
+          required
+        />
+        <label class="form-check-label">Male Trainer</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="trainerpreference"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="
+            trainerpreference.invalid && trainerpreference.touched
+          "
+          [(ngModel)]="userModel.trainerpreference"
+          required
+        />
+        <label class="form-check-label">Female Trainer</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="trainerpreference"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="
+            trainerpreference.invalid && trainerpreference.touched
+          "
+          [(ngModel)]="userModel.trainerpreference"
+          required
+        />
+        <label class="form-check-label">No Preferences</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="trainerpreference"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="
+            trainerpreference.invalid && trainerpreference.touched
+          "
+          [(ngModel)]="userModel.trainerpreference"
+          required
+        />
+        <label class="form-check-label">Other</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Do you need physiotherapist?</label>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="yes"
+          name="physiotherapist"
+          #physiotherapist="ngModel"
+          [class.is-invalid]="
+            physiotherapist.invalid && physiotherapist.touched
+          "
+          [(ngModel)]="userModel.physiotherapist"
+          required
+        />
+        <label class="form-check-label">Yes</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="physiotherapist"
+          #physiotherapist="ngModel"
+          [class.is-invalid]="
+            physiotherapist.invalid && physiotherapist.touched
+          "
+          [(ngModel)]="userModel.physiotherapist"
+          required
+        />
+        <label class="form-check-label">No</label>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label> Select Package</label>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="packages "
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="package.invalid && package.touched"
+          [(ngModel)]="userModel.packages"
+          required
+        />
+        <label class="form-check-label">
+          One time assessment only (INR 500)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="packages"
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="package.invalid && package.touched"
+          [(ngModel)]="userModel.packages"
+          required
+        />
+        <label class="form-check-label">
+          Four Weekly Session (INR 400/Session)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="packages"
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="package.invalid && package.touched"
+          [(ngModel)]="userModel.packages"
+          required
+        />
+        <label class="form-check-label">
+          12 Weekly Session (INR 300/Session)</label
+        >
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="packages"
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="package.invalid && package.touched"
+          [(ngModel)]="userModel.packages"
+          required
+        />
+        <label class="form-check-label">other</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="INR">INR</label>
+        <input
+          type="number"
+          class="form-control"
+          name="inr"
+          #inr="ngModel"
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="inr.invalid && inr.touched"
+          [(ngModel)]="userModel.inr"
+          required
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="paisa">Paisa</label>
+        <input
+          type="number"
+          class="form-control"
+          name="paisa"
+          #paisa="ngModel"
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="paisa.invalid && paisa.touched"
+          [(ngModel)]="userModel.paisa"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <label for="id">Id</label>
+        <input
+          type="number"
+          class="form-control"
+          name="id"
+          #id="ngModel"
+          #package="ngModel"
+          #physiotherapist="ngModel"
+          #trainerpreference="ngModel"
+          [class.is-invalid]="id.invalid && id.touched"
+          [(ngModel)]="userModel.id"
+        />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+      Submit Form
+    </button>
+  </form>
+</div>

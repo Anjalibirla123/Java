@@ -1,0 +1,12 @@
+.container-fluid {
+  margin-left: 250px;
+  margin-top: 0px;
+  padding-left: 10px;
+}
+.form-control {
+  width: 300px;
+}
+
+#pnum {
+  width: 800px;
+}
